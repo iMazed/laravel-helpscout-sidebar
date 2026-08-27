@@ -1,0 +1,60 @@
+{
+    "name": "imazed/laravel-helpscout-sidebar",
+    "description": "Render Laravel application data inside the Help Scout conversation sidebar, resolving customers server-side through the Help Scout Mailbox API.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "helpscout",
+        "help-scout",
+        "laravel",
+        "sidebar",
+        "customer-support"
+    ],
+    "authors": [
+        {
+            "name": "Ines van Dijk"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "guzzlehttp/guzzle": "^7.9",
+        "illuminate/cache": "^12.0 || ^13.0",
+        "illuminate/contracts": "^12.0 || ^13.0",
+        "illuminate/database": "^12.0 || ^13.0",
+        "illuminate/http": "^12.0 || ^13.0",
+        "illuminate/routing": "^12.0 || ^13.0",
+        "illuminate/support": "^12.0 || ^13.0",
+        "illuminate/view": "^12.0 || ^13.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.24",
+        "orchestra/testbench": "^10.0 || ^11.0",
+        "phpunit/phpunit": "^11.5 || ^12.5 || ^13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Imazed\\HelpScoutSidebar\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Imazed\\HelpScoutSidebar\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Imazed\\HelpScoutSidebar\\HelpScoutSidebarServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
