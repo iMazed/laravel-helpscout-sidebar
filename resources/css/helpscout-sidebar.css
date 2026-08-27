@@ -20,16 +20,6 @@
     --hs-sidebar-radius: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --hs-sidebar-text: #e8eaed;
-        --hs-sidebar-muted: #9aa0a6;
-        --hs-sidebar-border: #33373b;
-        --hs-sidebar-background: #1f2225;
-        --hs-sidebar-accent: #6cb8f5;
-    }
-}
-
 * {
     box-sizing: border-box;
 }
