@@ -11,6 +11,7 @@ Customer identity is established **server-side, through the Help Scout Mailbox A
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Publishing resources](#publishing-resources)
 - [Help Scout setup](#help-scout-setup)
 - [Building the sidebar](#building-the-sidebar)
 - [Customising customer resolution](#customising-customer-resolution)
@@ -89,6 +90,36 @@ HELPSCOUT_SIDEBAR_CUSTOMER_EMAIL_COLUMN=email
 The service provider is registered through package discovery, and the route is registered for you at `/helpscout/sidebar`.
 
 > **These are two different credentials.** `HELPSCOUT_SIDEBAR_SECRET` verifies requests coming *in* from Help Scout. `HELPSCOUT_SIDEBAR_APP_ID` and `HELPSCOUT_SIDEBAR_APP_SECRET` authenticate requests going *out* to the Mailbox API. They are created in two different places in Help Scout and are not interchangeable. Mixing them up is the most common first-run failure.
+
+## Publishing resources
+
+Three publishable tags are registered. Only the first is needed for a normal install:
+
+```bash
+php artisan vendor:publish --tag=helpscout-sidebar-config
+php artisan vendor:publish --tag=helpscout-sidebar-views
+php artisan vendor:publish --tag=helpscout-sidebar-assets
+```
+
+| Tag | Publishes to | When you need it |
+| --- | --- | --- |
+| `helpscout-sidebar-config` | `config/helpscout-sidebar.php` | Always — credentials, resolution, and route settings live here |
+| `helpscout-sidebar-views` | `resources/views/vendor/helpscout-sidebar/` | Changing the document that wraps the sidebar |
+| `helpscout-sidebar-assets` | `public/vendor/helpscout-sidebar/` | Forking the stylesheet or the height-reporting bridge |
+
+Or publish everything at once:
+
+```bash
+php artisan vendor:publish --provider="Imazed\HelpScoutSidebar\HelpScoutSidebarServiceProvider"
+```
+
+**Sidebar content is not published.** To change what the sidebar shows, implement `BuildsSidebar` — see [Building the sidebar](#building-the-sidebar). Publishing the view is for the surrounding HTML, and it is not required in order to use your own view: point `view` in the config at any view of your own.
+
+```php
+'view' => 'helpscout::my-sidebar',
+```
+
+> **Publishing the assets does not, by itself, change anything.** The stylesheet and the bridge are read from the package directory and inlined into the rendered document, so a fresh install renders correctly and sizes its iframe without anyone running `vendor:publish`. The published copies under `public/vendor/helpscout-sidebar/` are not what the view reads. To serve them statically instead, publish the views as well and replace the two inlined blocks in `sidebar.blade.php` with `asset()` tags. Treat this tag as "give me the source files", not "install the assets".
 
 ## Help Scout setup
 
