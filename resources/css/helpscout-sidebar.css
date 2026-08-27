@@ -1,0 +1,224 @@
+/**
+ * Help Scout sidebar styles.
+ *
+ * Scoped to the `hs-sidebar-*` class names emitted by the Sidebar renderer.
+ * Deliberately plain: this renders beside Help Scout's own interface in a
+ * narrow column, so it should read as part of that interface rather than
+ * competing with it.
+ *
+ * Inlined into the default view. Publish and edit it, or publish your own view,
+ * to change any of this.
+ */
+
+:root {
+    --hs-sidebar-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --hs-sidebar-text: #1b1c1d;
+    --hs-sidebar-muted: #6b7280;
+    --hs-sidebar-border: #e5e7eb;
+    --hs-sidebar-background: #ffffff;
+    --hs-sidebar-accent: #1292ee;
+    --hs-sidebar-radius: 6px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--hs-sidebar-background);
+    color: var(--hs-sidebar-text);
+    font-family: var(--hs-sidebar-font);
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Help Scout sizes the frame once the bridge reports a height. Until then,
+   avoid an internal scrollbar fighting the host's own. */
+html.hs-sidebar-height-managed,
+html.hs-sidebar-height-managed body {
+    overflow: hidden;
+}
+
+[data-helpscout-sidebar-root] {
+    padding: 0 20px;
+}
+
+.hs-sidebar-header h1 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.hs-sidebar-header p {
+    color: var(--hs-sidebar-muted);
+    margin: 2px 0 0;
+}
+
+.hs-sidebar-section {
+    border-top: 1px solid var(--hs-sidebar-border);
+    margin-top: 12px;
+    padding-top: 12px;
+}
+
+.hs-sidebar-section:first-child {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.hs-sidebar-section-title {
+    color: var(--hs-sidebar-muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.hs-sidebar-row {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    margin: 0 0 6px;
+}
+
+.hs-sidebar-row dt {
+    color: var(--hs-sidebar-muted);
+    flex: 0 0 auto;
+}
+
+.hs-sidebar-row dd {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    text-align: right;
+}
+
+.hs-sidebar-metric {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.hs-sidebar-metric span {
+    color: var(--hs-sidebar-muted);
+}
+
+.hs-sidebar-metric strong {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.hs-sidebar-metric small {
+    color: var(--hs-sidebar-muted);
+}
+
+.hs-sidebar-badge {
+    background: var(--hs-sidebar-border);
+    border-radius: 999px;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 0 4px 4px 0;
+    padding: 2px 8px;
+}
+
+.hs-sidebar-badge-positive {
+    background: #d7f2e3;
+    color: #14663f;
+}
+
+.hs-sidebar-badge-warning {
+    background: #fdeecd;
+    color: #7a4c07;
+}
+
+.hs-sidebar-badge-negative {
+    background: #fbdcdc;
+    color: #8a1c1c;
+}
+
+.hs-sidebar-link {
+    color: var(--hs-sidebar-accent);
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.hs-sidebar-link:hover strong {
+    text-decoration: underline;
+}
+
+.hs-sidebar-link span {
+    color: var(--hs-sidebar-muted);
+    display: block;
+}
+
+.hs-sidebar-empty {
+    padding: 4px 0;
+}
+
+.hs-sidebar-empty h1 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 4px;
+}
+
+.hs-sidebar-empty p {
+    color: var(--hs-sidebar-muted);
+    margin: 0;
+}
+
+a {
+    color: var(--hs-sidebar-accent);
+}
+
+.hs-sidebar-note {
+    margin: 0 0 8px;
+}
+
+.hs-sidebar-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0;
+}
+
+.hs-sidebar-header .hs-sidebar-links:not(:first-child) {
+    margin-top: 8px;
+}
+
+.hs-sidebar-icon-link {
+    align-items: center;
+    border: 1px solid var(--hs-sidebar-border);
+    border-radius: var(--hs-sidebar-radius);
+    color: var(--hs-sidebar-muted);
+    display: inline-flex;
+    height: 28px;
+    justify-content: center;
+    text-decoration: none;
+    width: 28px;
+}
+
+.hs-sidebar-icon-link:hover,
+.hs-sidebar-icon-link:focus-visible {
+    border-color: var(--hs-sidebar-accent);
+    color: var(--hs-sidebar-accent);
+}
+
+.hs-sidebar-visually-hidden {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
